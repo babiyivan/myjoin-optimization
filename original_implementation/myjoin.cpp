@@ -21,7 +21,7 @@ vector<string> split(const string& line, char delimiter) {
 }
 
 // Read a CSV file and return its contents as a vector of pairs
-vector<pair<string, string>> readFile(const string& filename) {
+vector<pair<string, string>> read_file(const string& filename) {
     vector<pair<string, string>> data;
     ifstream file(filename);
     string line;
@@ -37,10 +37,10 @@ vector<pair<string, string>> readFile(const string& filename) {
 }
 
 void my_join(const string& file1, const string& file2, const string& file3, const string& file4) {
-    auto data1 = readFile(file1);
-    auto data2 = readFile(file2);
-    auto data3 = readFile(file3);
-    auto data4 = readFile(file4);
+    auto data1 = read_file(file1);
+    auto data2 = read_file(file2);
+    auto data3 = read_file(file3);
+    auto data4 = read_file(file4);
 
     multimap<string, string> map1(data1.begin(), data1.end());
     multimap<string, string> map2(data2.begin(), data2.end());
