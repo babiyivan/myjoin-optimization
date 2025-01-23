@@ -22,8 +22,8 @@
 Based on: **With -O3 when compiling**
 **Changes:**
 * in `split()`
- * The split function now avoids creating a `stringstream` and instead uses `find` and `substr`, which are generally faster for simple tokenization
- * use `emplace_back` instead of `push_back`
+* The split function now avoids creating a `stringstream` and instead uses `find` and `substr`, which are generally faster for simple tokenization
+* use `emplace_back` instead of `push_back`
     * Avoids the need for a temporary object and the associated copy/move operations
 ```
 312.277.715.826      cycles
@@ -60,4 +60,18 @@ Base on: **myjoin3**
 
 28.487886000 seconds user
 3.123987000 seconds sys
+```
+
+## myjoin5
+Based on: **myjoin4**
+**Changes**
+* Reduce Scope of `std::string` and reserve memory for `std::vector` in read_file
+
+```
+109,042,856,561      cycles        
+
+29.300540595 seconds time elapsed
+
+26.262301000 seconds user
+3.035803000 seconds sys
 ```
