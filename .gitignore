@@ -8,3 +8,6 @@
 #generated files
 **/myjoin
 **/*.o
+
+#symbolic link
+data

@@ -75,3 +75,15 @@ Based on: **myjoin4**
 26.262301000 seconds user
 3.035803000 seconds sys
 ```
+
+## myjoin6
+* `unordered_multimap` + structured bindings
+```
+180,483,593,287      cycles                                                              `
+
+45.632959638 seconds time elapsed
+
+41.488424000 seconds user
+4.143642000 seconds sys
+
+```
