@@ -2,7 +2,7 @@
 SRCS = myjoin4.cpp
 
 CXX = g++
-CXXFLAGS = -Wall -Wextra -O2 -std=c++17
+CXXFLAGS = -Wall -Wextra -O3 -std=c++17
 
 TARGET = myjoin
 
@@ -30,9 +30,9 @@ compare-large:
 
 # Benchmark targets
 benchmark-small:
-	cd .. && cd /localtmp/efficient24 && perf stat ~/EP-Group-12/optimized_implementations/$(TARGET) a.csv b.csv c.csv d.csv
+	cd .. && cd /localtmp/efficient24 && perf stat ~/EP-Group-12/optimized_implementations/$(TARGET) a.csv b.csv c.csv d.csv > /dev/null
 benchmark-large:
-	cd.. && cd /localtmp/efficient24 && perf stat ~/EP-Group-12/optimized_implementations/$(TARGET) f1.csv f2.csv f3.csv f4.csv
+	cd .. && cd /localtmp/efficient24 && perf stat ~/EP-Group-12/optimized_implementations/$(TARGET) f1.csv f2.csv f3.csv f4.csv > /dev/null
 
 # Clean up build files
 clean:
