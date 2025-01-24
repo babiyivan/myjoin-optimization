@@ -52,15 +52,6 @@ vector<pair<string, string>> read_file(const string &filename) {
     return data;
 }
 
-// Read a CSV file into a sorted vector
-vector<pair<string, string>> read_and_sort_file(const string &filename) {
-    vector<pair<string, string>> data = read_file(filename);
-
-    // Sort data by key
-    sort(data.begin(), data.end());
-    return data;
-}
-
 void my_join(const string &file1, const string &file2, const string &file3, const string &file4) {
     auto data1 = read_file(file1);
     auto data2 = read_file(file2);
