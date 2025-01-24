@@ -1,5 +1,5 @@
 # The optimization we want to build / test
-SRCS = myjoin5.cpp
+SRCS = myjoin6.cpp
 
 CXX = g++
 CXXFLAGS = -Wall -Wextra -O3 -std=c++17
