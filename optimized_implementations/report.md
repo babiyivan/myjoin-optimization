@@ -65,7 +65,8 @@ Base on: **myjoin3**
 ## myjoin5
 Based on: **myjoin4**
 **Changes**
-* Reduce Scope of `std::string` and reserve memory for `std::vector` in read_file
+* reduce Scope of `std::string`
+* reserve memory for `std::vector` in read_file
 
 ```
 109,042,856,561      cycles        
@@ -74,4 +75,21 @@ Based on: **myjoin4**
 
 26.262301000 seconds user
 3.035803000 seconds sys
+```
+
+## myjoin6
+(loop unrolling pt1?) 
+
+Based on: **myjoin5**
+**Changes**
+* unroll the two inner-most loops by two
+* use `std::ostringstream buffer` to buffer the output and flush in one go
+
+```
+105,060,222,941      cycles         
+
+28.286133267 seconds time elapsed
+
+25.009352000 seconds user
+3.271653000 seconds sys
 ```
