@@ -9,22 +9,8 @@
 #include <vector>
 #include <tuple>
 #include <unordered_map>
-#include <map>
 
 using namespace std;
-
-// Split a string into tokens by a given delimiter
-vector<string> split(const string &line, char delimiter) {
-    vector<string> tokens;
-    size_t start = 0, end = 0;
-
-    while ((end = line.find(delimiter, start)) != string::npos) {
-        tokens.emplace_back(line.substr(start, end - start));
-        start = end + 1;
-    }
-    tokens.emplace_back(line.substr(start)); // Add the last token
-    return tokens;
-}
 
 // Read a CSV file into an unordered_multimap for faster lookups
 vector<pair<string, string>> read_file(const string &filename) {
@@ -77,10 +63,8 @@ void my_join(const string &file1, const string &file2, const string &file3, cons
 
     for (const auto &[key1, value1] : map1) {
         auto range2 = map2.equal_range(key1);
-        if (range2.first == range2.second) continue; // Skip if no matches in map2
-
         auto range3 = map3.equal_range(key1);
-        if (range3.first == range3.second) continue; // Skip if no matches in map3
+        if (range2.first == range2.second || range3.first == range3.second) continue; // Skip if no matches in map2 or map3
 
         for (auto it2 = range2.first; it2 != range2.second; ++it2) {
             auto it3 = range3.first;

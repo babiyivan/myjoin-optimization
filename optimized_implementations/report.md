@@ -67,6 +67,7 @@ Based on: **myjoin4**
 **Changes**
 * reduce Scope of `std::string`
 * reserve memory for `std::vector` in read_file
+* remove now unused method `split`
 
 ```
 109,042,856,561      cycles        

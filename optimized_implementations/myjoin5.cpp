@@ -7,23 +7,8 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <map>
 
 using namespace std;
-
-// Split a string into tokens by a given delimiter
-vector<string> split(const string &line, char delimiter) {
-    vector<string> tokens;
-    string token;
-    size_t start = 0, end = 0;
-
-    while ((end = line.find(delimiter, start)) != string::npos) {
-        tokens.emplace_back(line.substr(start, end - start));
-        start = end + 1;
-    }
-    tokens.emplace_back(line.substr(start)); // Add the last token
-    return tokens;
-}
 
 // Read a CSV file into an unordered_multimap for faster lookups
 vector<pair<string, string>> read_file(const string &filename) {
