@@ -2,7 +2,7 @@
 SRCS = myjoin7.cpp
 
 CXX = g++
-CXXFLAGS = -Wall -Wextra -O3 -std=c++17
+CXXFLAGS = -Wall -Wextra -O3 -std=c++17 -pthread
 
 TARGET = myjoin
 
