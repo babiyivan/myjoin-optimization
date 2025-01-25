@@ -110,3 +110,29 @@ Based on: **myjoin6**
 26.493009000 seconds user
 4.223349000 seconds sys
 ```
+
+## myjoin8
+
+Based on **myjoin6**
+Changes: Removed creation of map1, initialized unordered_multimap with reserved space
+
+```
+          26331.87 msec task-clock                       #    1.000 CPUs utilized          
+               206      context-switches                 #    7.823 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+           2811832      page-faults                      #  106.784 K/sec                  
+       97089778930      cycles                           #    3.687 GHz                    
+       86860106024      instructions                     #    0.89  insn per cycle         
+       19435077674      branches                         #  738.082 M/sec                  
+         331870053      branch-misses                    #    1.71% of all branches        
+      485448894650      slots                            #   18.436 G/sec                  
+       61743309419      topdown-retiring                 #     12.0% Retiring              
+      205601884792      topdown-bad-spec                 #     39.9% Bad Speculation       
+       43159486450      topdown-fe-bound                 #      8.4% Frontend Bound        
+      205020485087      topdown-be-bound                 #     39.8% Backend Bound         
+
+      26.335056698 seconds time elapsed
+
+      23.241372000 seconds user
+       3.091650000 seconds sys
+```
