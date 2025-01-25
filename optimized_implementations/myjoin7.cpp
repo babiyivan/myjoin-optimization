@@ -1,5 +1,5 @@
 //
-// Created by Jakob Petermandl on 23/01/25.
+// Created by Jakob Petermandl on 24/01/25.
 //
 #include <algorithm>
 #include <iostream>
@@ -9,6 +9,7 @@
 #include <vector>
 #include <tuple>
 #include <unordered_map>
+#include <future>
 
 using namespace std;
 
@@ -38,11 +39,19 @@ vector<pair<string, string>> read_file(const string &filename) {
     return data;
 }
 
+
 void my_join(const string &file1, const string &file2, const string &file3, const string &file4) {
-    auto data1 = read_file(file1);
-    auto data2 = read_file(file2);
-    auto data3 = read_file(file3);
-    auto data4 = read_file(file4);
+    // read files in parallel
+    auto future_data1 = std::async(std::launch::async, read_file, file1);
+    auto future_data2 = std::async(std::launch::async, read_file, file2);
+    auto future_data3 = std::async(std::launch::async, read_file, file3);
+    auto future_data4 = std::async(std::launch::async, read_file, file4);
+
+    // wait for files to be read
+    auto data1 = future_data1.get();
+    auto data2 = future_data2.get();
+    auto data3 = future_data3.get();
+    auto data4 = future_data4.get();
 
     unordered_multimap<string, string> map1, map2, map3, map4;
 
@@ -56,7 +65,7 @@ void my_join(const string &file1, const string &file2, const string &file3, cons
     map3.insert(data3.begin(), data3.end());
     map4.insert(data4.begin(), data4.end());
 
-    std::ostringstream buffer; // Use a buffer for efficient output
+    std::ostringstream buffer; // use a buffer for efficient output
 
     for (const auto &[key1, value1] : map1) {
         auto range2 = map2.equal_range(key1);
