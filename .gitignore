@@ -8,3 +8,5 @@
 #generated files
 **/myjoin
 **/*.o
+**/*.exe
+**/*.csv
