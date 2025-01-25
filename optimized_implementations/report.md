@@ -298,3 +298,79 @@ Changes: use memory mapping (mmap).
        1.743775000 seconds sys
 ```
 
+## myjoin 15
+Based on myjoin 8.
+Changes: Added Robin Hood hash.
+
+```
+
+          23447.01 msec task-clock                       #    1.000 CPUs utilized          
+                72      context-switches                 #    3.071 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+            991073      page-faults                      #   42.269 K/sec                  
+       78692234552      cycles                           #    3.356 GHz                    
+       67304671712      instructions                     #    0.86  insn per cycle         
+       14997981468      branches                         #  639.654 M/sec                  
+         357155533      branch-misses                    #    2.38% of all branches        
+      393461172760      slots                            #   16.781 G/sec                  
+       52072858991      topdown-retiring                 #     11.9% Retiring              
+      151212529139      topdown-bad-spec                 #     34.5% Bad Speculation       
+       31840862730      topdown-fe-bound                 #      7.3% Frontend Bound        
+      203745160028      topdown-be-bound                 #     46.4% Backend Bound         
+
+      23.450577824 seconds time elapsed
+
+      21.832126000 seconds user
+       1.616009000 seconds sys
+```
+
+## myjoin 16
+Based on myjoin15.
+Changes: Added Stringview.
+
+```
+          12292.34 msec task-clock                       #    1.000 CPUs utilized          
+                28      context-switches                 #    2.278 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+            195809      page-faults                      #   15.929 K/sec                  
+       46191998137      cycles                           #    3.758 GHz                    
+       40311051150      instructions                     #    0.87  insn per cycle         
+        7702432264      branches                         #  626.604 M/sec                  
+         268375006      branch-misses                    #    3.48% of all branches        
+      230959990685      slots                            #   18.789 G/sec                  
+       35727086699      topdown-retiring                 #     15.4% Retiring              
+       57060703581      topdown-bad-spec                 #     24.6% Bad Speculation       
+       14524871663      topdown-fe-bound                 #      6.3% Frontend Bound        
+      124995241399      topdown-be-bound                 #     53.8% Backend Bound         
+
+      12.293870577 seconds time elapsed
+
+      11.133366000 seconds user
+       1.160142000 seconds sys
+```
+
+## myjoin 17 
+Based on myjoin16
+changes: Removed stringstream, added simple string
+
+```
+          11568.42 msec task-clock                       #    1.000 CPUs utilized          
+                19      context-switches                 #    1.642 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+            192948      page-faults                      #   16.679 K/sec                  
+       42519558707      cycles                           #    3.675 GHz                    
+       31996138741      instructions                     #    0.75  insn per cycle         
+        6180121629      branches                         #  534.224 M/sec                  
+         262356791      branch-misses                    #    4.25% of all branches        
+      212597793535      slots                            #   18.377 G/sec                  
+       28457664736      topdown-retiring                 #     13.4% Retiring              
+       52524160755      topdown-bad-spec                 #     24.7% Bad Speculation       
+       13373868826      topdown-fe-bound                 #      6.3% Frontend Bound        
+      118387790909      topdown-be-bound                 #     55.6% Backend Bound         
+
+      11.569591011 seconds time elapsed
+
+      10.561289000 seconds user
+       1.008123000 seconds sys
+```
+
