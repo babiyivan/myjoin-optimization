@@ -42,10 +42,7 @@ void my_join(const string &file1, const string &file2, const string &file3, cons
     auto data3 = read_file(file3);
     auto data4 = read_file(file4);
 
-    unordered_multimap<string, string> map1;
-    unordered_multimap<string, string> map2;
-    unordered_multimap<string, string> map3;
-    unordered_multimap<string, string> map4;
+    unordered_multimap<string, string> map1, map2, map3, map4;
 
     map1.reserve(data1.size());
     map2.reserve(data2.size());

@@ -94,3 +94,19 @@ Based on: **myjoin5**
 25.009352000 seconds user
 3.271653000 seconds sys
 ```
+
+## myjoin7
+(cycles got worse, only time improved, so you might want to base future optimizations on earlier ones rather than this one)
+
+Based on: **myjoin6**
+**Changes**
+* parallelize reading of csv files
+
+```
+113,064,693,638      cycles         
+
+27.552050027 seconds time elapsed
+
+26.493009000 seconds user
+4.223349000 seconds sys
+```
