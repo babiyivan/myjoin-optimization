@@ -1,8 +1,8 @@
 # The optimization we want to build / test
-SRCS = myjoin8.cpp
+SRCS = myjoin17.cpp
 
 CXX = g++
-CXXFLAGS = -Wall -Wextra -O3 -std=c++17 -pthread
+CXXFLAGS = -Wall -Wextra -Ofast -std=c++17 -pthread
 
 TARGET = myjoin
 
