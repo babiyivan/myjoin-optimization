@@ -2,7 +2,7 @@
 SRCS = myjoin17.cpp
 
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Ofast -std=c++17 -pthread
+CXXFLAGS = -Wall -Wextra -Ofast -std=c++17 -pthread -march=native 
 
 TARGET = myjoin
 

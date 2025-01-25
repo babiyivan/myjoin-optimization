@@ -62,7 +62,7 @@ void my_join(const string &file1, const string &file2, const string &file3, cons
 
     // Use a single output buffer to minimize I/O operations
     string output_buffer;
-    output_buffer.reserve(1 << 22); // Preallocate 1MB for the buffer
+
 
     for (const auto &[key1, value1] : data1) {
         auto it2 = map2.find(key1);
