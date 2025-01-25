@@ -117,22 +117,22 @@ Based on **myjoin6**
 Changes: Removed creation of map1, initialized unordered_multimap with reserved space
 
 ```
-          26331.87 msec task-clock                       #    1.000 CPUs utilized          
-               206      context-switches                 #    7.823 /sec                   
+          25201.63 msec task-clock                       #    1.000 CPUs utilized          
+                77      context-switches                 #    3.055 /sec                   
                  0      cpu-migrations                   #    0.000 /sec                   
-           2811832      page-faults                      #  106.784 K/sec                  
-       97089778930      cycles                           #    3.687 GHz                    
-       86860106024      instructions                     #    0.89  insn per cycle         
-       19435077674      branches                         #  738.082 M/sec                  
-         331870053      branch-misses                    #    1.71% of all branches        
-      485448894650      slots                            #   18.436 G/sec                  
-       61743309419      topdown-retiring                 #     12.0% Retiring              
-      205601884792      topdown-bad-spec                 #     39.9% Bad Speculation       
-       43159486450      topdown-fe-bound                 #      8.4% Frontend Bound        
-      205020485087      topdown-be-bound                 #     39.8% Backend Bound         
+           1135196      page-faults                      #   45.045 K/sec                  
+       90858019300      cycles                           #    3.605 GHz                    
+       76347489653      instructions                     #    0.84  insn per cycle         
+       17253171661      branches                         #  684.606 M/sec                  
+         330981364      branch-misses                    #    1.92% of all branches        
+      454290096500      slots                            #   18.026 G/sec                  
+       59840582455      topdown-retiring                 #     12.6% Retiring              
+      138959323635      topdown-bad-spec                 #     29.2% Bad Speculation       
+       37496286559      topdown-fe-bound                 #      7.9% Frontend Bound        
+      239809378117      topdown-be-bound                 #     50.4% Backend Bound         
 
-      26.335056698 seconds time elapsed
+      25.203453258 seconds time elapsed
 
-      23.241372000 seconds user
-       3.091650000 seconds sys
+      23.262874000 seconds user
+       1.939906000 seconds sys
 ```
