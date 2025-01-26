@@ -79,18 +79,6 @@ Based on: **myjoin4**
 ```
 
 ## myjoin6
-<<<<<<< HEAD
-* `unordered_multimap` + structured bindings
-```
-180,483,593,287      cycles                                                              `
-
-45.632959638 seconds time elapsed
-
-41.488424000 seconds user
-4.143642000 seconds sys
-
-```
-=======
 (loop unrolling pt1?) 
 
 Based on: **myjoin5**
@@ -385,6 +373,17 @@ changes: Removed stringstream, added simple string
        0.824189000 seconds sys
 ```
 
+## myjoin 18
+Based on myjoin17
+changes: Added asyncronous file reading
+```
+    55,698,668,906      cycles                                                             
+
+      13.653316859 seconds time elapsed
+
+      13.537882000 seconds user
+       2.427094000 seconds sys
+```
 
 ## Conclusion: Best Algorithm myjoin 17
 
@@ -408,4 +407,3 @@ changes: Removed stringstream, added simple string
 7. No need to use map for the first file, as we iterate over it only once.
 
 
->>>>>>> origin/main
