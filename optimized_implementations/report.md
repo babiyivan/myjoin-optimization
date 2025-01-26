@@ -303,30 +303,29 @@ Based on myjoin 8.
 Changes: Added Robin Hood hash.
 
 ```
-
-          23447.01 msec task-clock                       #    1.000 CPUs utilized          
-                72      context-switches                 #    3.071 /sec                   
+          24604.69 msec task-clock                       #    1.000 CPUs utilized          
+                70      context-switches                 #    2.845 /sec                   
                  0      cpu-migrations                   #    0.000 /sec                   
-            991073      page-faults                      #   42.269 K/sec                  
-       78692234552      cycles                           #    3.356 GHz                    
-       67304671712      instructions                     #    0.86  insn per cycle         
-       14997981468      branches                         #  639.654 M/sec                  
-         357155533      branch-misses                    #    2.38% of all branches        
-      393461172760      slots                            #   16.781 G/sec                  
-       52072858991      topdown-retiring                 #     11.9% Retiring              
-      151212529139      topdown-bad-spec                 #     34.5% Bad Speculation       
-       31840862730      topdown-fe-bound                 #      7.3% Frontend Bound        
-      203745160028      topdown-be-bound                 #     46.4% Backend Bound         
+            999051      page-faults                      #   40.604 K/sec                  
+       85025197043      cycles                           #    3.456 GHz                    
+       75812214793      instructions                     #    0.89  insn per cycle         
+       16525324701      branches                         #  671.633 M/sec                  
+         361967672      branch-misses                    #    2.19% of all branches        
+      425125985215      slots                            #   17.278 G/sec                  
+       51454252457      topdown-retiring                 #     10.8% Retiring              
+      183387679896      topdown-bad-spec                 #     38.5% Bad Speculation       
+       30351616810      topdown-fe-bound                 #      6.4% Frontend Bound        
+      211729412244      topdown-be-bound                 #     44.4% Backend Bound         
 
-      23.450577824 seconds time elapsed
+      24.606691760 seconds time elapsed
 
-      21.832126000 seconds user
-       1.616009000 seconds sys
+      22.905713000 seconds user
+       1.700127000 seconds sys
 ```
 
 ## myjoin 16
 Based on myjoin15.
-Changes: Added Stringview.
+Changes: Added Stringview + add readed file into memory.
 
 ```
           12292.34 msec task-clock                       #    1.000 CPUs utilized          
@@ -354,23 +353,46 @@ Based on myjoin16
 changes: Removed stringstream, added simple string
 
 ```
-          11568.42 msec task-clock                       #    1.000 CPUs utilized          
-                19      context-switches                 #    1.642 /sec                   
+          11222.22 msec task-clock                       #    1.000 CPUs utilized          
+                34      context-switches                 #    3.030 /sec                   
                  0      cpu-migrations                   #    0.000 /sec                   
-            192948      page-faults                      #   16.679 K/sec                  
-       42519558707      cycles                           #    3.675 GHz                    
-       31996138741      instructions                     #    0.75  insn per cycle         
-        6180121629      branches                         #  534.224 M/sec                  
-         262356791      branch-misses                    #    4.25% of all branches        
-      212597793535      slots                            #   18.377 G/sec                  
-       28457664736      topdown-retiring                 #     13.4% Retiring              
-       52524160755      topdown-bad-spec                 #     24.7% Bad Speculation       
-       13373868826      topdown-fe-bound                 #      6.3% Frontend Bound        
-      118387790909      topdown-be-bound                 #     55.6% Backend Bound         
+            188350      page-faults                      #   16.784 K/sec                  
+       40973671158      cycles                           #    3.651 GHz                    
+       31929590831      instructions                     #    0.78  insn per cycle         
+        6173384133      branches                         #  550.104 M/sec                  
+         264813690      branch-misses                    #    4.29% of all branches        
+      204868307305      slots                            #   18.256 G/sec                  
+       26187537637      topdown-retiring                 #     12.5% Retiring              
+       58648574248      topdown-bad-spec                 #     28.1% Bad Speculation       
+       13779250612      topdown-fe-bound                 #      6.6% Frontend Bound        
+      110066502356      topdown-be-bound                 #     52.7% Backend Bound         
 
-      11.569591011 seconds time elapsed
+      11.222917698 seconds time elapsed
 
-      10.561289000 seconds user
-       1.008123000 seconds sys
+      10.398390000 seconds user
+       0.824189000 seconds sys
 ```
+
+
+## Conclusion: Best Algorithm myjoin 17
+
+1. Use `std::string_view` instead of `std::string` to avoid unnecessary memory allocations.
+   - `std::string_view` is a non-owning view of a string, which means it does not allocate memory
+     or copy the string data. This reduces memory usage and improves performance by avoiding
+     unnecessary allocations and copies.
+2. Use `robin_hood::unordered_map` instead of `std::unordered_map` for faster hash table lookups.
+3. Read the entire file into memory at once to reduce I/O operations, instead of reading line by line.
+4. Use a single output buffer to minimize I/O operations.
+   - Using a single output buffer and writing to it in chunks reduces the number of I/O operations,
+     which can improve performance when writing large amounts of data. 
+   - ostringstream is not used because it can be less efficient.
+5. Reserve map sizes to reduce reallocations.
+   - Reserving the size of the maps in advance reduces the number of reallocations needed as elements
+     are inserted, which can improve performance.
+6. Use `emplace_back` instead of `push_back` for better performance.
+   - `emplace_back` constructs the element in place directly in the container, which can avoid
+     unnecessary copies or moves. This can lead to more efficient code by reducing temporary object
+     creation and destruction.
+7. No need to use map for the first file, as we iterate over it only once.
+
 

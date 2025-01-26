@@ -1,3 +1,7 @@
+/*
+ * Author: Aleman Mihnea 25.01.2025
+ * Added string view + read the entire file into memory at once to reduce I/O operations, instead of reading line by line.
+*/
 #include <algorithm>
 #include <fstream>
 #include <iostream>

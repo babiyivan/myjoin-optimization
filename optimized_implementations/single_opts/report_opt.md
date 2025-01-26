@@ -264,3 +264,81 @@ Changes from: **myjoin8**
       37.493178000 seconds user
        2.243831000 seconds sys
 ```
+## Optimization 15
+Based on [opt15.cpp](./opt15.cpp)
+Use of Robin Hood Hashing
+
+```
+          43160.44 msec task-clock                       #    1.000 CPUs utilized          
+               191      context-switches                 #    4.425 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+            939087      page-faults                      #   21.758 K/sec                  
+      164292324013      cycles                           #    3.807 GHz                    
+      263860130596      instructions                     #    1.61  insn per cycle         
+       55373097465      branches                         #    1.283 G/sec                  
+         495626747      branch-misses                    #    0.90% of all branches        
+      821461620065      slots                            #   19.033 G/sec                  
+      199241320227      topdown-retiring                 #     18.3% Retiring              
+      554083916279      topdown-bad-spec                 #     50.9% Bad Speculation       
+      104873818248      topdown-fe-bound                 #      9.6% Frontend Bound        
+      230682193547      topdown-be-bound                 #     21.2% Backend Bound         
+
+      43.166760725 seconds time elapsed
+
+      41.909644000 seconds user
+       1.251929000 seconds sys
+```
+## Optimization 16
+Based on [opt16.cpp](./opt16.cpp).
+
+Use string_view where possible, read comments for explanation
+
+```
+
+          96032.45 msec task-clock                       #    1.000 CPUs utilized          
+               309      context-switches                 #    3.218 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+            824112      page-faults                      #    8.582 K/sec                  
+      311181203049      cycles                           #    3.240 GHz                    
+      154650400304      instructions                     #    0.50  insn per cycle         
+       44314817266      branches                         #  461.457 M/sec                  
+        1048312325      branch-misses                    #    2.37% of all branches        
+     1555906015245      slots                            #   16.202 G/sec                  
+       75628733751      topdown-retiring                 #      4.6% Retiring              
+      561346483931      topdown-bad-spec                 #     34.1% Bad Speculation       
+      139017499906      topdown-fe-bound                 #      8.4% Frontend Bound        
+      870799899008      topdown-be-bound                 #     52.9% Backend Bound         
+
+      96.035832792 seconds time elapsed
+
+      93.964772000 seconds user
+       2.067928000 seconds sys
+```
+
+## Optimization 17
+
+Based on [opt17.cpp](./opt17.cpp)
+
+I dont know which myjoin, but this is using `unorder_map<string, vector<string>>`
+
+```
+
+          45415.17 msec task-clock                       #    1.000 CPUs utilized          
+               116      context-switches                 #    2.554 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+           1124422      page-faults                      #   24.759 K/sec                  
+      178943225873      cycles                           #    3.940 GHz                    
+      266767269735      instructions                     #    1.49  insn per cycle         
+       56877558670      branches                         #    1.252 G/sec                  
+         341301311      branch-misses                    #    0.60% of all branches        
+      894716129365      slots                            #   19.701 G/sec                  
+      205836598719      topdown-retiring                 #     20.5% Retiring              
+      343851688932      topdown-bad-spec                 #     34.2% Bad Speculation       
+      119560056354      topdown-fe-bound                 #     11.9% Frontend Bound        
+      337238490934      topdown-be-bound                 #     33.5% Backend Bound         
+
+      45.417322094 seconds time elapsed
+
+      44.096361000 seconds user
+       1.320010000 seconds sys
+```
