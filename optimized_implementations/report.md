@@ -8,7 +8,30 @@
 2.759966000 seconds sys
 ```
 
+## Original -O2
+```
+          91157.58 msec task-clock                       #    1.000 CPUs utilized          
+               186      context-switches                 #    2.040 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+           1638241      page-faults                      #   17.972 K/sec                  
+      353151865678      cycles                           #    3.874 GHz                    
+      357178800821      instructions                     #    1.01  insn per cycle         
+       88224115310      branches                         #  967.820 M/sec                  
+        1263324117      branch-misses                    #    1.43% of all branches        
+     1765759328390      slots                            #   19.370 G/sec                  
+      251759360344      topdown-retiring                 #     12.6% Retiring              
+      858643751844      topdown-bad-spec                 #     43.0% Bad Speculation       
+      206408247705      topdown-fe-bound                 #     10.3% Frontend Bound        
+      679958221674      topdown-be-bound                 #     34.1% Backend Bound         
+
+      91.160145869 seconds time elapsed
+
+      88.662667000 seconds user
+       2.495962000 seconds sys
+```
+
 ## With -O3 when compiling
+
 ```
 355,163,021,185      cycles
 
@@ -17,6 +40,7 @@
 88.205682000 seconds user
 3.051781000 seconds sys
 ```
+
 
 ## myjoin2
 Based on: **With -O3 when compiling**
@@ -377,12 +401,24 @@ changes: Removed stringstream, added simple string
 Based on myjoin17
 changes: Added asyncronous file reading
 ```
-    55,698,668,906      cycles                                                             
+          13985.92 msec task-clock                       #    3.003 CPUs utilized          
+              5184      context-switches                 #  370.659 /sec                   
+                 4      cpu-migrations                   #    0.286 /sec                   
+            199155      page-faults                      #   14.240 K/sec                  
+       47498081175      cycles                           #    3.396 GHz                    
+       30333023639      instructions                     #    0.64  insn per cycle         
+        6174750729      branches                         #  441.498 M/sec                  
+         185239805      branch-misses                    #    3.00% of all branches        
+      237490405875      slots                            #   16.981 G/sec                  
+       25098276667      topdown-retiring                 #     10.3% Retiring              
+       55088081139      topdown-bad-spec                 #     22.7% Bad Speculation       
+       13529403397      topdown-fe-bound                 #      5.6% Frontend Bound        
+      149004501674      topdown-be-bound                 #     61.4% Backend Bound         
 
-      13.653316859 seconds time elapsed
+       4.656870990 seconds time elapsed
 
-      13.537882000 seconds user
-       2.427094000 seconds sys
+      12.169426000 seconds user
+       1.823015000 seconds sys
 ```
 
 ## Conclusion: Best Algorithm myjoin 17
