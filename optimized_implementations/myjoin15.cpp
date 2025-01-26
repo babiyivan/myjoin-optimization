@@ -1,3 +1,8 @@
+/*
+* Author: Aleman Mihnea 25.01.2025
+* Use of robin_hood::unordered_map instead of std::unordered_map for faster hash table lookups. Performance on avg a little better than std:unordered_multimap and a lot better than std:unordered_map. (Check single_opt)
+ */
+
 #include <algorithm>
 #include <iostream>
 #include <fstream>
@@ -63,9 +68,9 @@ void my_join(const string &file1, const string &file2, const string &file3, cons
         map4[key].push_back(value);
     }
 
-    // Output results directly to cout in manageable chunks
-    string output_chunk;
-    output_chunk.reserve(8192); // Reserve a large buffer for each chunk
+
+    // Use a single output buffer to minimize I/O operations
+    ostringstream output_buffer;
 
     for (const auto &[key1, value1] : data1) {
         // Perform all lookups once and reuse iterators
@@ -80,27 +85,17 @@ void my_join(const string &file1, const string &file2, const string &file3, cons
                 auto it4 = map4.find(value3);
                 if (it4 != map4.end()) {
                     for (const auto& value4 : it4->second) {
-                        output_chunk.append(value3).append(",")
-                                    .append(key1).append(",")
-                                    .append(value1).append(",")
-                                    .append(value2).append(",")
-                                    .append(value4).append("\n");
+                        output_buffer << value3 << "," << key1 << "," << value1 << ","
+                                      << value2 << "," << value4 << "\n";
 
-                        // Flush chunk if it exceeds a certain size
-                        if (output_chunk.size() > 65536) { // Flush every 64 KB
-                            cout << output_chunk;
-                            output_chunk.clear();
-                        }
                     }
                 }
             }
         }
     }
 
-    // Flush remaining output
-    if (!output_chunk.empty()) {
-        cout << output_chunk;
-    }
+    // Flush the buffer to standard output
+    cout << output_buffer.str();
 }
 
 int main(int argc, char *argv[]) {

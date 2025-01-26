@@ -65,6 +65,7 @@ void my_join(const string &file1, const string &file2, const string &file3, cons
                 for (auto it4 = range4.first; it4 != range4.second; ++it4) {
                     output_buffer << it3->second << "," << key1 << "," << value1 << ","
                                   << it2->second << "," << it4->second << "\n";
+                    
                 }
             }
         }

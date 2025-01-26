@@ -1,5 +1,5 @@
 # The optimization we want to build / test
-TARGET = opt10
+TARGET = opt17
 SRCS = $(TARGET).cpp
 
 CXX = g++
@@ -25,15 +25,15 @@ $(TARGET): $(OBJS)
 
 # Compare targets
 compare-small:
-	cd .. && cd /localtmp/efficient24 && ~/EP-Group-12/optimized_implementations/$(TARGET) a.csv b.csv c.csv d.csv | sort | diff - abcd.csv
+	cd .. && cd /localtmp/efficient24 && ~/EP-Group-12/optimized_implementations/single_opts/$(TARGET) a.csv b.csv c.csv d.csv | sort | diff - abcd.csv
 compare-large:
-	cd .. && cd /localtmp/efficient24 && ~/EP-Group-12/optimized_implementations/$(TARGET) f1.csv f2.csv f3.csv f4.csv | sort | diff - output.csv
+	cd .. && cd /localtmp/efficient24 && ~/EP-Group-12/optimized_implementations/single_opts/$(TARGET) f1.csv f2.csv f3.csv f4.csv | sort | diff - output.csv
 
 # Benchmark targets
 benchmark-small:
-	cd .. && cd /localtmp/efficient24 && perf stat ~/EP-Group-12/optimized_implementations/$(TARGET) a.csv b.csv c.csv d.csv > /dev/null
+	cd .. && cd /localtmp/efficient24 && perf stat ~/EP-Group-12/optimized_implementations/single_opts/$(TARGET) a.csv b.csv c.csv d.csv > /dev/null
 benchmark-large:
-	cd .. && cd /localtmp/efficient24 && perf stat ~/EP-Group-12/optimized_implementations/$(TARGET) f1.csv f2.csv f3.csv f4.csv > /dev/null
+	cd ../../ && cd /localtmp/efficient24 && perf stat ~/EP-Group-12/optimized_implementations/single_opts/$(TARGET) f1.csv f2.csv f3.csv f4.csv > /dev/null
 
 # Clean up build files
 clean:
