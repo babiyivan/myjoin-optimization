@@ -8,6 +8,11 @@
 #generated files
 **/myjoin
 **/*.o
+<<<<<<< HEAD
 
 #symbolic link
 data
+=======
+**/*.exe
+**/*.csv
+>>>>>>> origin/main

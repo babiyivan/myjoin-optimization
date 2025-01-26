@@ -1,6 +1,7 @@
 //
-// Created by Jakob Petermandl on 23/01/25.
+// Created by Aleman Mihnea on 23/01/25.
 //
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -10,20 +11,19 @@
 
 using namespace std;
 
-// Read a CSV file into an unordered_multimap for faster lookups
+// Read a CSV file into a vector of pairs
 vector<pair<string, string>> read_file(const string &filename) {
     vector<pair<string, string>> data;
     ifstream file(filename);
     string line;
 
-    file.seekg(0, ios::end); // Estimate file size for pre-allocation
-    size_t estimated_lines = file.tellg() / 50; // Rough guess: 50 bytes per line
+    file.seekg(0, ios::end);
+    size_t estimated_lines = file.tellg() / 50; // Rough estimate
     file.seekg(0, ios::beg);
 
-    data.reserve(estimated_lines); // Reserve space
+    data.reserve(estimated_lines);
 
     while (getline(file, line)) {
-        //reduce scope of std::string
         size_t delim = line.find(',');
         if (delim != string::npos) {
             data.emplace_back(
@@ -42,34 +42,37 @@ void my_join(const string &file1, const string &file2, const string &file3, cons
     auto data3 = read_file(file3);
     auto data4 = read_file(file4);
 
-    unordered_multimap<string, string> map1, map2, map3, map4;
+    // Initialize unordered_multimap with reserved space to reduce rehashing
+    unordered_multimap<string, string> map2(data2.begin(), data2.end());
+    unordered_multimap<string, string> map3(data3.begin(), data3.end());
+    unordered_multimap<string, string> map4(data4.begin(), data4.end());
 
-    map1.reserve(data1.size());
-    map2.reserve(data2.size());
-    map3.reserve(data3.size());
-    map4.reserve(data4.size());
+    // Use a single output buffer to minimize I/O operations
+    ostringstream output_buffer;
 
-    map1.insert(data1.begin(), data1.end());
-    map2.insert(data2.begin(), data2.end());
-    map3.insert(data3.begin(), data3.end());
-    map4.insert(data4.begin(), data4.end());
-
-    for (const auto &[key1, value1] : map1) {
-        // Directly use the ranges of matching elements
+    for (const auto &[key1, value1] : data1) {
+        // Check matches in map2 and map3
         auto range2 = map2.equal_range(key1);
         auto range3 = map3.equal_range(key1);
 
+        if (range2.first == range2.second || range3.first == range3.second)
+            continue;
+
         for (auto it2 = range2.first; it2 != range2.second; ++it2) {
             for (auto it3 = range3.first; it3 != range3.second; ++it3) {
+                // Look up map4 matches for the current value from map3
                 auto range4 = map4.equal_range(it3->second);
-
                 for (auto it4 = range4.first; it4 != range4.second; ++it4) {
-                    cout << it3->second << "," << key1 << "," << value1 << ","
-                         << it2->second << "," << it4->second << "\n";
+                    output_buffer << it3->second << "," << key1 << "," << value1 << ","
+                                  << it2->second << "," << it4->second << "\n";
+                    
                 }
             }
         }
     }
+
+    // Flush the buffer to standard output
+    cout << output_buffer.str();
 }
 
 int main(int argc, char *argv[]) {

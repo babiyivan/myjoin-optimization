@@ -34,9 +34,19 @@ You can compare the program's output with the expected results using the followi
 ~/EP-Group-12/original_implementation/myjoin a.csv b.csv c.csv d.csv | sort | diff - abcd.csv
 ```
 
+##### Compute Cycles
+```bash
+perf stat ~/EP-Group-12/original_implementation/myjoin a.csv b.csv c.csv d.csv > /dev/null
+```
+
 #### Large Data Set:
 ```bash
 ~/EP-Group-12/original_implementation/myjoin f1.csv f2.csv f3.csv f4.csv | sort | diff - output.csv
+```
+
+##### Compute Cycles
+```bash
+perf stat ~/EP-Group-12/original_implementation/myjoin f1.csv f2.csv f3.csv f4.csv > /dev/null
 ```
 
 ### Local test
